@@ -1,15 +1,48 @@
 ---
+import Navbar from "../components/navbar.svelte";
+import SearchBar from "../components/searchBar.svelte";
+import IndexBlogPosts from "../components/indexBlogPosts.svelte";
+const posts = await Astro.glob("../pages/blogs/*.mdx");
+const featured = posts.filter((post) =>
+  post.frontmatter.title.includes("MERN")
+);
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/Blog512x512.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>Pranjal's blog</title>
   </head>
-  <body>
-    <h1>Astro</h1>
+  <body
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-800"
+  >
+    <Navbar />
+    <main
+      class="flex flex-col mx-auto h-full justify-center flex-1 desktop:max-w-[72rem] px-4 gap-10 mt-4"
+    >
+      <div
+        class="flex desktop:flex-row flex-col desktop:items-center items-start gap-4"
+      >
+        <img
+          src="https://avatars.githubusercontent.com/u/95481637?v=4"
+          alt="img_not_found"
+          class="desktop:h-40 h-20 aspect-square rounded-full shadow-md shadow-neutral-400"
+        />
+        <div class="flex flex-col gap-1">
+          <a class="font-bold desktop:text-4xl text-2xl">Pranjal Gupta</a>
+          <p class="desktop:text-lg text-base">
+            Hey, welcome to my blog! I'm a web developer who loves to write
+            about programming and tech. Join me on my journey to learn more
+            about web development and programming, as I document my experiences,
+            projects, and learnings.
+          </p>
+        </div>
+      </div>
+      <IndexBlogPosts posts={featured} IndexTitle="Featured Posts" />
+      <IndexBlogPosts posts={posts} IndexTitle="All Posts" />
+    </main>
   </body>
 </html>
