@@ -1,0 +1,45 @@
+---
+import Navbar from "../components/navbar.svelte";
+
+interface Props {
+  content: {
+    title: string;
+    author: string;
+    date: string;
+    authorImage: string;
+    description: string;
+  };
+}
+const {
+  content: { title, author, date, authorImage, description },
+} = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/Blog512x512.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+
+  <body
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans"
+  >
+    <Navbar client:load />
+    <main
+      class="flex flex-col mx-auto h-full justify-center flex-1 max-w-[72rem] px-4 gap-1"
+    >
+      <h1 class="desktop:text-5xl text-2xl font-bold">{title}</h1>
+      <p class="text-base font-semibold text-neutral-600">{date}</p>
+      <div class="flex flex-row items-center gap-2">
+        <img
+          class="h-8 aspect-square rounded-full"
+          src="https://avatars.githubusercontent.com/u/95481637?v=4"
+        /><p class="desktop:text-base font-semibold">Pranjal Gupta</p>
+      </div>
+      <p><slot /></p>
+    </main>
+  </body>
+</html>
