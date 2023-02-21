@@ -1,0 +1,7 @@
+.prose {
+  @apply prose-h1:text-white prose-h1:font-semibold desktop:prose-h1:text-3xl prose-h1:text-xl prose-code:bg-slate-900 text-white;
+}
+
+.astro-code {
+  @apply bg-slate-400;
+}
