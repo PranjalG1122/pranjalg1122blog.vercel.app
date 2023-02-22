@@ -1,5 +1,8 @@
 ---
 import Navbar from "../components/navbar.svelte";
+import "../styles/index.css";
+import { Icon } from "astro-icon";
+import CopyToClipboard from "../components/copyToClipboard.svelte";
 
 interface Props {
   content: {
@@ -8,10 +11,12 @@ interface Props {
     date: string;
     authorImage: string;
     description: string;
+    tags: string[];
   };
 }
+
 const {
-  content: { title, author, date, authorImage, description },
+  content: { title, author, date, authorImage, description, tags },
 } = Astro.props as Props;
 ---
 
@@ -25,21 +30,70 @@ const {
   </head>
 
   <body
-    class="flex flex-col w-full justify-start h-full min-h-screen font-sans"
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-800"
   >
-    <Navbar client:load />
+    <Navbar />
     <main
-      class="flex flex-col mx-auto h-full justify-center flex-1 max-w-[72rem] px-4 gap-1"
+      class="flex flex-col mx-auto h-full justify-center flex-1 max-w-[72rem] px-4 gap-10 my-4"
     >
-      <h1 class="desktop:text-5xl text-2xl font-bold">{title}</h1>
-      <p class="text-base font-semibold text-neutral-600">{date}</p>
-      <div class="flex flex-row items-center gap-2">
-        <img
-          class="h-8 aspect-square rounded-full"
-          src="https://avatars.githubusercontent.com/u/95481637?v=4"
-        /><p class="desktop:text-base font-semibold">Pranjal Gupta</p>
+      <div class="flex flex-col gap-3 leading-none">
+        <h1 class="desktop:text-6xl text-3xl font-semibold">{title}</h1>
+        <div class="flex flex-row items-center gap-2">
+          <img
+            class="h-8 aspect-square rounded-full"
+            src="https://avatars.githubusercontent.com/u/95481637?v=4"
+          /><p class="desktop:text-base font-semibold">Pranjal Gupta</p> /
+          <span class="text-base font-semibold text-neutral-400">{date}</span>
+        </div>
+        <div class="flex flex-row gap-2 flex-wrap">
+          {
+            tags.map((tag) => (
+              <span class="bg-slate-600 font-semibold rounded text-base px-1 py-0.5">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+        <div class="flex flex-row gap-2">
+          {
+            [
+              {
+                icon: "fe:twitter",
+                bg: "bg-sky-600",
+                url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${Astro.request.url}`,
+              },
+              {
+                icon: "ph:reddit-logo-fill",
+                bg: "bg-orange-600",
+                url: `https://reddit.com/submit?url=${Astro.request.url}&title=${title}`,
+              },
+              {
+                icon: "mdi:linkedin",
+                bg: "bg-cyan-800",
+                url: `http://www.linkedin.com/shareArticle?mini=true&url=${Astro.request.url}`,
+              },
+              {
+                icon: "ic:round-mail",
+                bg: "bg-red-600",
+                url: `mailto:?subject=${title}&body=${Astro.request.url}`,
+              },
+            ].map((social) => {
+              return (
+                <a href={social.url}>
+                  <Icon
+                    name={social.icon}
+                    class={"h-8 aspect-square rounded-full p-1 " + social.bg}
+                  />
+                </a>
+              );
+            })
+          }
+          <CopyToClipboard icon="ic:outline-ios-share" client:load />
+        </div>
       </div>
-      <p><slot /></p>
+      <div class="prose max-w-full">
+        <slot />
+      </div>
     </main>
   </body>
 </html>
