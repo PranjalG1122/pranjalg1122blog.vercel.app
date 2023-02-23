@@ -34,7 +34,7 @@
   <h1 class="font-semibold desktop:text-4xl text-2xl">All Posts</h1>
   <input
     placeholder="Search all posts..."
-    class="w-full px-1 py-0.5 bg-slate-700 rounded-md"
+    class="w-full px-2 py-1 bg-slate-700 rounded-md"
     bind:value={searched}
   />
   <div class="flex flex-row gap-2 flex-wrap">
