@@ -1,5 +1,5 @@
 <nav
-  class="flex flex-row  items-center justify-between sticky top-0 py-4 shadow-lg w-full bg-slate-800"
+  class="flex flex-row items-center justify-between sticky top-0 py-4 shadow-lg w-full bg-slate-800"
 >
   <div
     class="desktop:w-[72rem] w-full items-center justify-between mx-auto flex flex-row"

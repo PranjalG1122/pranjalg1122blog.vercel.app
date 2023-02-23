@@ -21,7 +21,8 @@
   @apply text-white font-semibold;
 }
 
-.prose p {
+.prose p,
+.prose strong {
   @apply text-white;
 }
 
@@ -32,4 +33,8 @@
 code::after,
 code::before {
   @apply hidden;
+}
+
+.prose ul {
+  @apply list-disc list-inside text-white;
 }
