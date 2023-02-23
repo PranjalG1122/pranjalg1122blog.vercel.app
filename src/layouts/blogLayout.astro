@@ -61,22 +61,22 @@ const {
               {
                 icon: "fe:twitter",
                 bg: "bg-sky-600",
-                url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${window.location.href}`,
+                url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${Astro.url}`,
               },
               {
                 icon: "ph:reddit-logo-fill",
                 bg: "bg-orange-600",
-                url: `https://reddit.com/submit?url=${window.location.href}&title=${title}`,
+                url: `https://reddit.com/submit?url=${Astro.url}&title=${title}`,
               },
               {
                 icon: "mdi:linkedin",
                 bg: "bg-cyan-800",
-                url: `http://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`,
+                url: `http://www.linkedin.com/shareArticle?mini=true&url=${Astro.url}`,
               },
               {
                 icon: "ic:round-mail",
                 bg: "bg-red-600",
-                url: `mailto:?subject=${title}&body=${window.location.href}`,
+                url: `mailto:?subject=${title}&body=${Astro.url}`,
               },
             ].map((social) => {
               return (
