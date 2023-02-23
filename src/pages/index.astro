@@ -1,12 +1,8 @@
 ---
 import Navbar from "../components/navbar.svelte";
-import SearchBar from "../components/searchBar.svelte";
 import IndexBlogPosts from "../components/indexBlogPosts.svelte";
 import "../styles/index.css";
 const posts = await Astro.glob("../pages/blogs/*.mdx");
-const featured = posts.filter((post) =>
-  post.frontmatter.title.includes("MERN")
-);
 ---
 
 <html lang="en">
@@ -42,8 +38,11 @@ const featured = posts.filter((post) =>
           </p>
         </div>
       </div>
-      <IndexBlogPosts posts={featured} IndexTitle="Featured Posts" />
-      <IndexBlogPosts posts={posts} IndexTitle="All Posts" />
+      <IndexBlogPosts
+        posts={posts}
+        IndexTitle="All Posts"
+        client:only={"svelte"}
+      />
     </main>
   </body>
 </html>
