@@ -34,7 +34,7 @@ const {
   >
     <Navbar />
     <main
-      class="flex flex-col mx-auto h-full justify-center flex-1 max-w-[72rem] px-4 gap-10 my-4"
+      class="flex flex-col mx-auto h-full justify-center flex-1 desktop:max-w-[72rem] w-full px-4 gap-10 my-4"
     >
       <div class="flex flex-col gap-3 leading-none">
         <h1 class="desktop:text-6xl text-3xl font-semibold">{title}</h1>
@@ -92,7 +92,7 @@ const {
           <CopyToClipboard client:load />
         </div>
       </div>
-      <div class="prose max-w-full">
+      <div class="prose desktop:max-w-full max-w-full ">
         <slot />
       </div>
     </main>
