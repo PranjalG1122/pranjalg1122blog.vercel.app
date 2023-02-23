@@ -1,15 +1,15 @@
 :root {
-  --astro-code-color-text: #EEEEEE;
+  --astro-code-color-text: #eeeeee;
   --astro-code-color-background: #334155;
-  --astro-code-token-constant: #f87171;
-  --astro-code-token-string: #770000;
-  --astro-code-token-comment: #880000;
-  --astro-code-token-keyword: #f87171;
-  --astro-code-token-parameter: #AA0000;
-  --astro-code-token-function: #BB0000;
-  --astro-code-token-string-expression: #CC0000;
-  --astro-code-token-punctuation: #DD0000;
-  --astro-code-token-link: #EE0000;
+  --astro-code-token-constant: #eeeeee;
+  --astro-code-token-string: #22d3ee;
+  --astro-code-token-comment: #94a3b8;
+  --astro-code-token-keyword: #38bdf8;
+  --astro-code-token-parameter: #0ea5e9;
+  --astro-code-token-function: #38bdf8;
+  --astro-code-token-string-expression: #34d399;
+  --astro-code-token-punctuation: #eeeeee;
+  --astro-code-token-link: #eeeeee;
 }
 
 .prose h1,
@@ -26,7 +26,7 @@
 }
 
 .prose code {
-  @apply text-white px-1 py-0.5 rounded bg-slate-700;
+  @apply text-white rounded bg-slate-700;
 }
 
 code::after,
