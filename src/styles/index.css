@@ -1,7 +1,35 @@
-.prose {
-  @apply prose-h1:text-white prose-h1:font-semibold desktop:prose-h1:text-3xl prose-h1:text-xl prose-code:bg-slate-900 text-white;
+:root {
+  --astro-code-color-text: #EEEEEE;
+  --astro-code-color-background: #334155;
+  --astro-code-token-constant: #f87171;
+  --astro-code-token-string: #770000;
+  --astro-code-token-comment: #880000;
+  --astro-code-token-keyword: #f87171;
+  --astro-code-token-parameter: #AA0000;
+  --astro-code-token-function: #BB0000;
+  --astro-code-token-string-expression: #CC0000;
+  --astro-code-token-punctuation: #DD0000;
+  --astro-code-token-link: #EE0000;
 }
 
-.astro-code {
-  @apply bg-slate-400;
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply text-white font-semibold;
+}
+
+.prose p {
+  @apply text-white;
+}
+
+.prose code {
+  @apply text-white px-1 py-0.5 rounded bg-slate-700;
+}
+
+code::after,
+code::before {
+  @apply hidden;
 }
