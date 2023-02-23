@@ -71,7 +71,9 @@
             </span>
           {/each}
         </div>
-        <p class="">{post.frontmatter.description}</p>
+        <p class="">
+          {post.frontmatter.description}
+        </p>
         <a
           href={post.url}
           class="text-blue-400 hover:underline underline-offset-2"
