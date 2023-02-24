@@ -12,11 +12,12 @@ interface Props {
     authorImage: string;
     description: string;
     tags: string[];
+    authorCredit: string;
   };
 }
 
 const {
-  content: { title, date, tags, author, authorImage },
+  content: { title, date, tags, author, authorImage, authorCredit },
 } = Astro.props as Props;
 
 const path = Astro.url;
@@ -41,9 +42,14 @@ const path = Astro.url;
       <div class="flex flex-col gap-3 leading-none">
         <h1 class="desktop:text-6xl text-3xl font-semibold">{title}</h1>
         <div class="flex flex-row items-center gap-2">
-          <img class="h-8 aspect-square rounded-full" src={authorImage} /><p
-            class="desktop:text-base font-semibold"
-          >
+          <a href={authorCredit}>
+            <img
+              src={authorImage}
+              alt=""
+              class="h-8 aspect-square rounded-full hover:shadow-sm transition-all hover:shadow-white"
+            />
+          </a>
+          <p class="desktop:text-base font-semibold">
             {author}
           </p> /
           <span class="text-base font-semibold text-neutral-400">{date}</span>
