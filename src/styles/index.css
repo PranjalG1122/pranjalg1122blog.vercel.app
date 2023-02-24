@@ -23,7 +23,7 @@
 
 .prose p,
 .prose strong {
-  @apply text-white;
+  @apply text-white text-lg;
 }
 
 .prose code {
