@@ -5,6 +5,9 @@
       date: string;
       tags: string[];
       description: string;
+      authorImage: string;
+      author: string;
+      authorCredit: string;
     };
     url: string;
   }[];
@@ -55,12 +58,23 @@
   {#each filteredPosts as post}
     <div>
       <article class="p-4 bg-slate-700 rounded-md flex flex-col gap-1">
-        <h1 class="font-semibold desktop:text-xl text-lg">
-          <span>{post.frontmatter.title}</span>
+        <div class="flex flex-row items-center gap-2">
+          <a href={post.frontmatter.authorCredit}>
+            <img
+              src={post.frontmatter.authorImage}
+              alt=""
+              class="h-8 aspect-square rounded-full hover:shadow-sm transition-all hover:shadow-white"
+            />
+          </a>
+          <span class="text-white font-semibold text-base"
+            >{post.frontmatter.author}</span
+          >
           <span class="text-neutral-400 text-base">
-            {" "}
             / {post.frontmatter.date}
           </span>
+        </div>
+        <h1 class="font-semibold desktop:text-xl text-lg">
+          <span>{post.frontmatter.title}</span>
         </h1>
         <div class="flex flex-row gap-2 flex-wrap">
           {#each post.frontmatter.tags as tag}
