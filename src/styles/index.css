@@ -18,7 +18,7 @@
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply text-white font-semibold;
+  @apply text-white font-bold;
 }
 
 .prose p,
@@ -27,7 +27,7 @@
 }
 
 .prose code {
-  @apply text-white rounded bg-slate-700 overflow-auto;
+  @apply text-white rounded py-0.5 font-normal bg-slate-700 overflow-auto;
 }
 
 code::after,
