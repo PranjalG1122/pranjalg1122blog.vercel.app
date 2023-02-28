@@ -78,25 +78,24 @@ format we want our data to be in. In this case, we want it to be in JSON format.
 
 `.then()` is a function which runs once the function that it is attached to has
 executed. In this case, we convert the incoming response to JSON format and then
-log it to the console. We use wrap everything in a `try/catch` block so that if
-any errors occur, we can catch them and log them to the console.
+log it to the console. We use `.catch()` as it handles any errors that may
+occur. In this case, we log the error to the console.
 
 ```js
-const handleFetch = async () => {
-  try {
-    await fetch("http://localhost:5000/ping", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+const handleFetch = () => {
+  fetch("http://localhost:5000/ping", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+    .catch((err) => {
+      console.log(err);
+    });
 };
 ```
 
