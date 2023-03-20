@@ -44,7 +44,7 @@
     {#each tags as tag}
       <button
         class={"bg-slate-600 text-base font-semibold rounded px-1 py-0.5 " +
-          (selectedTags.includes(tag) ? "text-blue-400" : "text-neutral-400")}
+          (selectedTags.includes(tag) ? "text-blue-400" : "text-neutral-100")}
         on:click={() => {
           selectedTags.includes(tag)
             ? (selectedTags = selectedTags.filter((t) => t !== tag))
@@ -59,7 +59,11 @@
     <div>
       <article class="p-4 bg-slate-700 rounded-md flex flex-col gap-1">
         <div class="flex flex-row items-center gap-2">
-          <a href={post.frontmatter.authorCredit}>
+          <a
+            href={post.frontmatter.authorCredit}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               src={post.frontmatter.authorImage}
               alt=""

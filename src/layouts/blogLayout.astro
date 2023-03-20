@@ -42,7 +42,7 @@ const path = Astro.url;
       <div class="flex flex-col gap-3 leading-none">
         <h1 class="desktop:text-6xl text-3xl font-semibold">{title}</h1>
         <div class="flex flex-row items-center gap-2">
-          <a href={authorCredit}>
+          <a href={authorCredit} target="_blank" rel="noopener noreferrer">
             <img
               src={authorImage}
               alt=""
@@ -88,7 +88,7 @@ const path = Astro.url;
               },
             ].map((social) => {
               return (
-                <a href={social.url}>
+                <a href={social.url} target="_blank" rel="noopener noreferrer">
                   <Icon
                     name={social.icon}
                     class={"h-8 aspect-square rounded-full p-1 " + social.bg}
