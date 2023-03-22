@@ -77,7 +77,7 @@
             / {post.frontmatter.date}
           </span>
         </div>
-        <h1 class="font-semibold desktop:text-xl text-lg">
+        <h1 class="font-semibold desktop:text-2xl text-xl">
           <span>{post.frontmatter.title}</span>
         </h1>
         <div class="flex flex-row gap-2 flex-wrap">
