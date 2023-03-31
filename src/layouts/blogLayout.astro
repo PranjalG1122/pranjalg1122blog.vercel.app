@@ -21,6 +21,29 @@ const {
 } = Astro.props as Props;
 
 const path = Astro.url;
+
+const icons = [
+  {
+    icon: "fe:twitter",
+    bg: "bg-sky-600",
+    url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${path}`,
+  },
+  {
+    icon: "ph:reddit-logo-fill",
+    bg: "bg-orange-600",
+    url: `https://reddit.com/submit?url=${path}&title=${title}`,
+  },
+  {
+    icon: "mdi:linkedin",
+    bg: "bg-cyan-800",
+    url: `http://www.linkedin.com/shareArticle?mini=true&url=${path}`,
+  },
+  {
+    icon: "ic:round-mail",
+    bg: "bg-red-600",
+    url: `mailto:?subject=${title}&body=${path}`,
+  },
+];
 ---
 
 <html lang="en">
@@ -65,28 +88,7 @@ const path = Astro.url;
         </div>
         <div class="flex flex-row gap-2">
           {
-            [
-              {
-                icon: "fe:twitter",
-                bg: "bg-sky-600",
-                url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${path}`,
-              },
-              {
-                icon: "ph:reddit-logo-fill",
-                bg: "bg-orange-600",
-                url: `https://reddit.com/submit?url=${path}&title=${title}`,
-              },
-              {
-                icon: "mdi:linkedin",
-                bg: "bg-cyan-800",
-                url: `http://www.linkedin.com/shareArticle?mini=true&url=${path}`,
-              },
-              {
-                icon: "ic:round-mail",
-                bg: "bg-red-600",
-                url: `mailto:?subject=${title}&body=${path}`,
-              },
-            ].map((social) => {
+            icons.map((social) => {
               return (
                 <a href={social.url} target="_blank" rel="noopener noreferrer">
                   <Icon

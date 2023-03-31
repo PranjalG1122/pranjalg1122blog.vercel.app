@@ -22,12 +22,21 @@
 }
 
 .prose p,
-.prose strong {
-  @apply text-white text-lg;
+.prose strong,
+.prose li {
+  @apply text-white desktop:text-xl text-base;
+}
+
+.prose pre {
+  @apply text-white desktop:text-xl text-base rounded py-4 font-normal bg-slate-700 overflow-auto;
+}
+
+.prose pre > code {
+  @apply px-0;
 }
 
 .prose code {
-  @apply text-white rounded py-0.5 font-normal bg-slate-700 overflow-auto;
+  @apply text-white desktop:text-xl text-base rounded px-1 py-0.5 font-normal bg-slate-700 overflow-auto;
 }
 
 code::after,

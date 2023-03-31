@@ -29,18 +29,19 @@ const posts = await Astro.glob("../pages/blogs/*.mdx");
           class="desktop:h-40 h-20 aspect-square rounded-full shadow-md shadow-neutral-400"
         />
         <div class="flex flex-col gap-1">
-          <a
-            href="https://pranjalg420.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-bold w-fit desktop:text-4xl text-2xl underline underline-offset-2 hover:text-blue-400 transition-all"
-            >Pranjal Gupta</a
-          >
+          <p class="desktop:text-4xl text-2xl font-bold">Pranjal Gupta</p>
           <p class="desktop:text-lg text-base">
             Hey, welcome to my blog! I'm a web developer who loves to write
             about programming and tech. Join me on my journey to learn more
             about web development and programming, as I document my experiences,
-            projects, and learnings.
+            projects, and learnings. Check out my portfolio site <span
+              ><a
+                href="https://pranjalg420.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-500 hover:text-blue-400 transition-all">here</a
+              ></span
+            >.
           </p>
         </div>
       </div>
