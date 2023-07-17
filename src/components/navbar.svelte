@@ -1,11 +1,11 @@
 <nav
-  class="flex flex-row items-center justify-between sticky top-0 py-4 shadow-lg w-full bg-slate-800"
+  class="flex flex-row items-center justify-between sticky top-0 py-2 shadow-lg w-full bg-slate-950 border-b border-slate-800"
 >
   <div
-    class="desktop:w-[72rem] w-full items-center justify-between mx-auto flex flex-row"
+    class="desktop:max-w-3xl w-full items-center justify-between mx-auto flex flex-row desktop:px-0 px-4"
   >
     <a
-      class="px-4 py-2 font-bold desktop:text-xl text-base rounded hover:bg-slate-700 text-white transition-all"
+      class="py-1 font-semibold desktop:text-xl text-base text-white"
       href="/"
       title="Pranjal Gupta"
       >Pranjal Gupta

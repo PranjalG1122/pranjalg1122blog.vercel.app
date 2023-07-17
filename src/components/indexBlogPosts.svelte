@@ -5,9 +5,9 @@
       date: string;
       tags: string[];
       description: string;
-      authorImage: string;
-      author: string;
-      authorCredit: string;
+      // authorImage: string;
+      // author: string;
+      // authorCredit: string;
     };
     url: string;
   }[];
@@ -37,14 +37,14 @@
   <h1 class="font-semibold desktop:text-4xl text-2xl">All Posts</h1>
   <input
     placeholder="Search all posts..."
-    class="w-full px-2 py-1 bg-slate-700 rounded-md"
+    class="w-full px-2 py-1 bg-slate-950 rounded border border-slate-800 focus:border-slate-700 focus:outline-none"
     bind:value={searched}
   />
   <div class="flex flex-row gap-2 flex-wrap">
     {#each tags as tag}
       <button
-        class={"bg-slate-600 text-base font-semibold rounded px-1 py-0.5 " +
-          (selectedTags.includes(tag) ? "text-blue-400" : "text-neutral-100")}
+        class={"text-base rounded px-2 py-1 " +
+          (selectedTags.includes(tag) ? "bg-slate-600" : "bg-slate-800")}
         on:click={() => {
           selectedTags.includes(tag)
             ? (selectedTags = selectedTags.filter((t) => t !== tag))
@@ -55,50 +55,33 @@
       </button>
     {/each}
   </div>
-  {#each filteredPosts as post}
-    <div>
-      <article class="p-4 bg-slate-700 rounded-md flex flex-col gap-1">
-        <div class="flex flex-row items-center gap-2">
-          <a
-            href={post.frontmatter.authorCredit}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src={post.frontmatter.authorImage}
-              alt=""
-              class="h-8 aspect-square rounded-full hover:shadow-sm transition-all hover:shadow-white"
-            />
-          </a>
-          <span class="text-white font-semibold text-base"
-            >{post.frontmatter.author}</span
-          >
-          <span class="text-neutral-400 text-base">
-            / {post.frontmatter.date}
+  {#each filteredPosts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()) as post}
+    <a
+      href={post.url}
+      class="p-4 bg-slate-950 rounded border border-slate-800 flex flex-col gap-2"
+    >
+      <h1 class="font-semibold desktop:text-2xl text-xl">
+        {post.frontmatter.title}
+      </h1>
+      <span class="text-neutral-400 text-base">
+        {post.frontmatter.date}
+      </span>
+      <div class="flex flex-row gap-2 flex-wrap">
+        {#each post.frontmatter.tags as tag}
+          <span class="bg-slate-800 text-base rounded px-2 py-1">
+            {tag}
           </span>
-        </div>
-        <h1 class="font-semibold desktop:text-2xl text-xl">
-          <span>{post.frontmatter.title}</span>
-        </h1>
-        <div class="flex flex-row gap-2 flex-wrap">
-          {#each post.frontmatter.tags as tag}
-            <span
-              class="bg-slate-600 text-base font-semibold rounded px-1 py-0.5 "
-            >
-              {tag}
-            </span>
-          {/each}
-        </div>
-        <p class="">
-          {post.frontmatter.description}
-        </p>
-        <a
-          href={post.url}
-          class="text-blue-400 hover:underline underline-offset-2"
-        >
-          Read more
-        </a>
-      </article>
-    </div>
+        {/each}
+      </div>
+      <p class="">
+        {post.frontmatter.description}
+      </p>
+      <a
+        href={post.url}
+        class="text-blue-400 hover:underline underline-offset-2 w-fit"
+      >
+        Read more
+      </a>
+    </a>
   {/each}
 </div>

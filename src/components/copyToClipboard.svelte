@@ -9,7 +9,7 @@
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="h-8 w-8 aspect-square rounded-full p-1 bg-gray-600 "
+    class="h-8 w-8 aspect-square rounded-full p-1 bg-gray-700 "
     width="24"
     height="24"
     viewBox="0 0 24 24"

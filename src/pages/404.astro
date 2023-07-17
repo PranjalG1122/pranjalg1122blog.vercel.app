@@ -11,19 +11,19 @@ import Navbar from "../components/navbar.svelte";
     <title>404</title>
   </head>
   <body
-    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-800"
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-950"
   >
     <Navbar />
     <main
-      class="flex flex-col mx-auto h-full justify-center items-center flex-1 desktop:max-w-[72rem] px-4 gap-10 my-4"
+      class="flex flex-col mx-auto h-full justify-center items-center desktop:max-w-3xl gap-6 desktop:px-0 px-4"
     >
-      <h1 class="font-bold desktop:text-6xl text-3xl leading-none">404</h1>
-      <p class="font-semibold desktop:text-xl text-base">
+      <h1 class="desktop:text-6xl text-4xl leading-none">404</h1>
+      <p class="text-neutral-400 italic desktop:text-xl text-base">
         Woah, how did you end up here?
       </p>
       <a
         href="/"
-        class="px-4 py-2 font-bold desktop:text-xl text-base rounded bg-slate-600 hover:bg-slate-700 text-white transition-all"
+        class="px-4 py-2 desktop:text-lg text-base rounded bg-slate-800 hover:bg-slate-700 text-white transition-all"
         >Back home</a
       >
     </main>
