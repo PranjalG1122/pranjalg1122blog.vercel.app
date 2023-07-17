@@ -16,8 +16,10 @@
         .map((tag) => tag)
     ),
   ];
+
   let selectedTags: string[] = [];
   let searched: string = "";
+
   $: filteredPosts = posts.filter((post) => {
     return (
       (post.frontmatter.title.toLowerCase().includes(searched.toLowerCase()) &&
@@ -52,7 +54,7 @@
       </button>
     {/each}
   </div>
-  {#each filteredPosts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()) as post}
+  {#each filteredPosts as post}
     <a
       href={post.url}
       class="p-4 bg-slate-950 rounded border border-slate-800 flex flex-col gap-2"
