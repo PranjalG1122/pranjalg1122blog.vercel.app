@@ -5,9 +5,6 @@
       date: string;
       tags: string[];
       description: string;
-      // authorImage: string;
-      // author: string;
-      // authorCredit: string;
     };
     url: string;
   }[];
