@@ -48,7 +48,6 @@ const posts = await Astro.glob("../pages/blogs/*.mdx");
       </div>
       <IndexBlogPosts
         posts={posts}
-        IndexTitle="All Posts"
         client:only={"svelte"}
       />
     </main>
