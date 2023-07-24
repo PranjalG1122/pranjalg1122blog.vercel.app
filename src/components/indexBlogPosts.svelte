@@ -8,6 +8,7 @@
     };
     url: string;
   }[];
+
   let tags: string[] = [
     ...new Set(
       posts
