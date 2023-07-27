@@ -1,7 +1,7 @@
 ---
 import Navbar from "../components/navbar.svelte";
 import "../styles/index.css";
-import { Icon } from "astro-icon";
+// import { Icon } from "astro-icon";
 import CopyToClipboard from "../components/copyToClipboard.svelte";
 
 interface Props {
@@ -71,7 +71,7 @@ const icons = [
             ))
           }
         </div>
-        <div class="flex flex-row gap-2">
+        <!-- <div class="flex flex-row gap-2">
           {
             icons.map((social) => {
               return (
@@ -85,7 +85,7 @@ const icons = [
             })
           }
           <CopyToClipboard client:load />
-        </div>
+        </div> -->
       </div>
       <div class="prose md:max-w-full max-w-full">
         <slot />
