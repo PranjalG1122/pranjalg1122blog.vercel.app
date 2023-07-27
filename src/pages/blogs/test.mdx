@@ -1,0 +1,183 @@
+---
+title: "How to make a Fetch Request to a Server"
+date: "27-02-2023"
+layout: "../../layouts/blogLayout.astro"
+description:
+  "I'll talk about how to make a fetch request using React, Express, Node.js and
+  cors."
+tags: ["React", "API"]
+---
+
+## Introduction
+
+I'll be showing you how to make a fetch request using React, Express, Node.js
+and cor. There are many applications of making a fetch request, such as
+accessing and handling data from an API, authentication for user registration
+and login, and many more. In this tutorial, we'll mainly focus on sending a
+request to our custom server and handling the response.
+
+## Frontend
+
+We'll use Vite as its development environment is fast, especially compared to
+'Create-React-App'. We'll ignore any templates as they introduce redundant
+boilerplate code and unwanted styles. We'll also use Typescript as introducing
+predefined types will help with debugging in the later stages. We'll use `pnpm`
+as it a much more optimised package manager, but using `npm` or `yarn` is also
+fine. To start, let's create a new directory called 'client' in your root
+directory (make sure to choose 'React' and 'Typescript' in the options when
+creating a Vite project):
+
+```bash
+pnpm create vite client react-ts
+cd client
+pnpm install
+pnpm run dev
+```
+
+Head over to your `App.tsx` file and remove all the boilerplate in between the
+outermost `<div></div>`, as well as any unnecessary imports. We'll then add a
+button element which has a `onClick` event listener which will call a function
+called `handleFetch`. It should look something like this:
+
+```js
+import "./App.css";
+
+function App() {
+  return (
+    <div className="App">
+      <button onClick={handleFetch}>Fetch</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Sending a request from the Frontend
+
+For the frontend, we'll define a function `handleFetch` which will be called
+everytime we want to make a request to the server. We use async/await to make
+the function asynchorous so that the function will wait for the response from
+the server. Async functions have three responses: pending, resolved, and
+rejected. Pending is the state when the request has been sent, but no
+appropriate response has been received. Resolved is when the response has been
+received and the request has been fulfilled. Rejected is when the request has
+been rejected by the server, since a particular condition has not been met. An
+async function runs on a seperate thread until the response has achieved one of
+the three states.
+
+The fetch function has two parameters: the url and an object containing the
+method, headers, and body. The method is the type of request we want to make,
+which in this case is a **GET** request. There are many other types of requests
+such as **POST**, **PUT**, **DELETE**, etc. We use
+`"Content-Type": "application/json",` as we want to send specify what type of
+format we want our data to be in. In this case, we want it to be in JSON format.
+
+`.then()` is a function which runs once the function that it is attached to has
+executed. In this case, we convert the incoming response to JSON format and then
+log it to the console. We use `.catch()` as it handles any errors that may
+occur. In this case, we log the error to the console.
+
+```js
+const handleFetch = () => {
+  fetch("http://localhost:5000/ping", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+```
+
+## Backend
+
+### Setting up the server
+
+For the backend, create another directory called 'server' in your root
+directory. We'll first create a `package.json` file using `pnpm init` and then
+install the dependecies:
+
+```bash
+pnpm install express cors ts-node typescript nodemon
+pnpm install @types/cors @types/express @types/node
+```
+
+In your server directory, create a new file called `index.ts`. Head over to your
+`package.json` and change the "main" to "index.ts". Under "scripts", create a
+new script, "start":
+
+```json
+ "scripts": {
+    "start": "nodemon"
+  },
+```
+
+Now, we'll create a basic Express server. Head over to your `index.ts` file and
+add the following code:
+
+```js
+import cors from "cors";
+import express from "express";
+import { Request, Response } from "express";
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+app.options("*", cors());
+
+app.listen(5000, () => {
+  console.log("Server is running on port 3000");
+});
+```
+
+We are importing cors and Express and then creating an instance of Express
+called `app`. We use the `app.use()` function as it mounts the middleware to any
+route throughout the server as it processes the request. These middleware layers
+run everytime a route is called and execute some function. In our case, we are
+using `app.use(express.json())` as it recognizes the incoming data from the
+frontend and converts it to a json object. `app.listen()` is used to bind itself
+to a specific port and listen for any connections. Its options include a port
+number and a callback function which is executed once the server is running. To
+test and run the server, run the following command. You should see your message
+being logged to the console.
+
+```bash
+pnpm start
+```
+
+### Creating a test route
+
+We will now creat a test route, which will send a response to the frontend. We
+use `app.get()` as it specifically handles GET requests. The first parameter is
+the route, and the second parameter is a callback function which takes in a
+request and a response. The request is the incoming request from the frontend,
+and the response is the response that we want to send back to the frontend. We
+use `res.json()` as it sends a response back to the frontend in json format. In
+this case, we are sending a string called "pong". The final code should look
+like this:
+
+```js
+app.get("/ping", (req: Request, res: Response) => {
+  res.json({ message: "pong" });
+});
+```
+
+### Testing
+
+Everything is set up! Run an instance of both your client and your sever on
+seperate terminals. You should see the following message in your browser
+console:
+
+```js
+{
+  message: "pong";
+}
+```

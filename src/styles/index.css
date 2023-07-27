@@ -1,0 +1,66 @@
+/* :root {
+  --astro-code-color-text: #fff;
+  --astro-code-color-background: #1e293b;
+  --astro-code-token-constant: #60a5fa;
+  --astro-code-token-string: #22d3ee;
+  --astro-code-token-comment: #94a3b8;
+  --astro-code-token-keyword: #f87171;
+  --astro-code-token-parameter: #0ea5e9;
+  --astro-code-token-function: #c084fc;
+  --astro-code-token-string-expression: #60a5fa;
+  --astro-code-token-punctuation: #eeeeee;
+  --astro-code-token-link: #eeeeee;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply text-white desktop:text-2xl text-xl font-medium;
+}
+
+.prose p,
+.prose strong,
+.prose li {
+  @apply text-white desktop:text-lg text-base;
+}
+
+.prose pre {
+  @apply text-white desktop:text-base text-sm rounded py-4 font-normal bg-slate-800 overflow-auto;
+}
+
+.prose pre > code {
+  @apply px-0;
+}
+
+.prose code {
+  @apply text-white desktop:text-sm text-xs rounded-sm px-1 py-0.5 font-normal bg-slate-800 overflow-auto;
+}
+
+code::after,
+code::before {
+  @apply hidden;
+}
+
+.prose ul {
+  @apply list-disc list-inside text-white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+} */

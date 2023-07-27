@@ -1,0 +1,108 @@
+---
+import Navbar from "../components/navbar.svelte";
+import "../styles/index.css";
+// import { Icon } from "astro-icon";
+import CopyToClipboard from "../components/copyToClipboard.svelte";
+
+interface Props {
+  content: {
+    title: string;
+    
+    date: string;
+    
+    description: string;
+    tags: string[];
+
+  };
+}
+
+const {
+  content: { title, date, tags },
+} = Astro.props as Props;
+
+const path = Astro.url;
+
+const icons = [
+  {
+    icon: "fe:twitter",
+    bg: "bg-sky-700",
+    url: `https://twitter.com/intent/tweet?text=Check out Pranjal's blog! ${title}&url=${path}`,
+  },
+  {
+    icon: "ph:reddit-logo-fill",
+    bg: "bg-orange-700",
+    url: `https://reddit.com/submit?url=${path}&title=${title}`,
+  },
+  {
+    icon: "mdi:linkedin",
+    bg: "bg-cyan-900",
+    url: `http://www.linkedin.com/shareArticle?mini=true&url=${path}`,
+  },
+  {
+    icon: "ic:round-mail",
+    bg: "bg-red-700",
+    url: `mailto:?subject=${title}&body=${path}`,
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/Blog512x512.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+
+  <body
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-950"
+  >
+    <Navbar />
+    <main
+      class="flex flex-col mx-auto h-full flex-1 desktop:max-w-3xl w-full gap-10 py-8 desktop:px-0 px-4"
+    >
+      <!-- <div class="flex flex-col gap-4 leading-none">
+        <h1 class="desktop:text-5xl text-3xl font-semibold">{title}</h1>
+        <div class="flex flex-row items-center gap-2">
+            <img
+              src="https://avatars.githubusercontent.com/u/95481637?v=4"
+              alt=""
+              class="h-8 aspect-square rounded-full"
+            />
+          <p class="desktop:text-base font-semibold">
+            Pranjal Gupta
+          </p> /
+          <span class="text-base font-semibold text-neutral-400">{date}</span>
+        </div>
+        <div class="flex flex-row gap-2 flex-wrap">
+          {
+            tags.map((tag) => (
+              <span class="bg-slate-800 font-semibold rounded text-base px-2 py-1">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+        <div class="flex flex-row gap-2">
+          {
+            icons.map((social) => {
+              return (
+                <a href={social.url} target="_blank" rel="noopener noreferrer">
+                  <Icon
+                    name={social.icon}
+                    class={"h-8 aspect-square rounded-full p-1 " + social.bg}
+                  />
+                </a>
+              );
+            })
+          }
+          <CopyToClipboard client:load />
+        </div>
+      </div> -->
+      <div class="prose desktop:max-w-full max-w-full">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
