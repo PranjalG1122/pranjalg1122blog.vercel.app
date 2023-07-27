@@ -69,7 +69,7 @@ respective states. We can use these functions to set a new state or perform
 operations on previous stored states. For example, given below for the state
 `number`, we increment it by 1 on the click of a button:
 
-```jsx
+```tsx
 function Component() {
   return (
     <button
@@ -99,11 +99,11 @@ on the initial render of the application. The setup function can also have an
 optional cleanup function after it, which executes before the component is
 unmounted.
 
-```jsx
+```tsx
 import { useEffect, useState } from "react";
 
 function Component() {
-  const [counter, setCounter] = useState < number > 0;
+  const [counter, setCounter] = useState<number>(0);
   useEffect(() => {
     const counter = setInterval(() => {
       setCounter(num + 1);
@@ -129,7 +129,7 @@ the component, unmounts it and then remounts it.
 Keep in mind, you should never update a state inside a `useEffect()` which is
 being tracked, as this can cause an infinite loop of re-rendering.
 
-```jsx
+```tsx
 import { useEffect } from "react";
 
 function Component() {
@@ -161,11 +161,11 @@ object called `counterRef`, as shown below. We'll give it an initial value of 0.
 On clicking the button, it'll increment the ref's value by 1 and log it to the
 console.
 
-```jsx
+```tsx
 import { useRef } from "react";
 
 function Component() {
-  const counterRef = useRef < number > 0;
+  const counterRef = useRef<number>(0);
   function IncrementRef() {
     counterRef.current = counterRef.current + 1;
     console.log("The current value of counterRef is " + counterRef);
@@ -185,7 +185,7 @@ DOM by giving a ref to a JSX/TSX component and executing a function as a side
 effect. Given below is an example of a button component shifting the client's
 focus to an input box using `useRef()`
 
-```jsx
+```tsx
 import { useRef } from "react";
 
 function Component() {
@@ -216,7 +216,7 @@ run everytime there is a change in the dependecies and on the initial render.
 This function should be pure (the result depends on the arguments) and take no
 arguments.
 
-```jsx
+```tsx
 import { useMemo } from "react";
 
 function Component() {
@@ -243,7 +243,7 @@ we use multiple instances of the same component in a parent component, without
 leads to accessibility issues. `useId()` solves this problem by generating a
 unique ID for each instance of the component.
 
-```jsx
+```tsx
 import { useId } from "react";
 
 function Component() {

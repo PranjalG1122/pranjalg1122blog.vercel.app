@@ -39,7 +39,7 @@
     })
     .sort((a, b) => {
       return a.frontmatter.index - b.frontmatter.index;
-    });
+    }).reverse();
 </script>
 
 <div class="flex flex-col gap-4">
