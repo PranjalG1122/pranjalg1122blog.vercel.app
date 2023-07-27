@@ -5,25 +5,25 @@ import Navbar from "../components/navbar.svelte";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/Blog512x512.png" />
+    <link rel="icon" type="image/svg+xml" href="/blogLogo.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>404</title>
   </head>
   <body
-    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-950"
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-neutral-900"
   >
     <Navbar />
     <main
-      class="flex flex-col mx-auto h-full justify-center items-center desktop:max-w-3xl gap-6 desktop:px-0 px-4"
+      class="flex flex-col mx-auto my-auto h-full justify-center items-center md:max-w-3xl gap-6 md:px-0 px-4"
     >
-      <h1 class="desktop:text-6xl text-4xl leading-none">404</h1>
-      <p class="text-neutral-400 italic desktop:text-xl text-base">
+      <h1 class="md:text-6xl text-4xl leading-none">404</h1>
+      <p class="text-neutral-400 italic md:text-xl text-base">
         Woah, how did you end up here?
       </p>
       <a
         href="/"
-        class="px-4 py-2 desktop:text-lg text-base rounded bg-slate-800 hover:bg-slate-700 text-white transition-all"
+        class="px-2 py-1 md:text-lg text-base bg-neutral-800 hover:bg-neutral-700 text-white transition-all"
         >Back home</a
       >
     </main>
