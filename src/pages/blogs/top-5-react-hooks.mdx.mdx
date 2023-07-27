@@ -1,0 +1,258 @@
+---
+index: 3
+title: "Top 5 React Hooks"
+date: "13-03-2023"
+layout: "../../layouts/blogLayout.astro"
+description:
+  "There are a total of 42 React hooks so far, but not all of them see much use.
+  I've compiled together a list of the top 5 hooks that will most defintely be
+  in your next React application."
+tags: ["React"]
+---
+
+## What are React hooks?
+
+Hooks are React's way of reusing Javascript functions that allow you to manage
+the React lifecycle. Hooks can be easily called inside React functions or at the
+top of a component, but not inside a class. They were introduced so that we
+wouldn't have to use classes to manipulate and add states. They are also used to
+manage side effects of a component. There are a total of 42 React hooks so far,
+but not all of them see much use. I've compiled together a list of the top 5
+hooks that I'd recommend for your next React application. The main types of
+React hooks are given below:
+
+- State Hooks: These hooks remembers any input given by the client and store it.
+  They can be used to store any type of variable, such as a string, number or an
+  object. They can also be passed as props to other components. They can be
+  created using the `useState()` hook.
+- Effect Hooks: These hooks are used to track the side effects of a component.
+  They can be used to fetch data, update the DOM for a specific condition or
+  track a state to check if it has satisfied a certain check. They can be
+  created using the `useEffect()` hook.
+- Ref Hooks: These hooks are used to locate and reference a value locally in a
+  component. When a re-render is executed, the value stored inside a `useRef()`
+  is not affected, whereas a normal variable's value is reset.
+- Context Hooks: These hooks are used to create a global state that can be
+  accessed by any component. They can be created using the `useContext()` hook.
+- Performance Hooks: These hooks are used to improve the performance of a
+  component. They can be created using the `useMemo()` and `useCallback()`
+  hooks.
+- Custom Hooks: These hooks are created by the developer to reuse code. They can
+  be created using the `useCustom()` hook.
+
+## 1. useState()
+
+`useState()` is by far one of the most popular hooks used by React developers.
+It allows the client to store any **type** of variable inside it, whereas
+classes only allow the state to be an object. It can also be passed as props to
+other components. `useState()` has one prop that can be passed into it, which is
+the initial state. This initial state is assigned to the useState on the initial
+render of the web application. We receive two things from `useState()`: The
+state and a function to set a value to the state.
+
+Take the example given below. We first import `useState()` from "react" and then
+create a state called `text` which will have an initial value of "Hello World!".
+We can use TypeScript to define a type for this state, which in the first case
+is a string. The same is done for the `number` state.
+
+```ts
+import { useState } from "react";
+
+function Component() {
+  const [text, setText] = useState<string>("Hello World!");
+  const [number, setNumber] = useState<number>(0);
+}
+```
+
+`setText` and `setNumber` are functions which are used to set values for their
+respective states. We can use these functions to set a new state or perform
+operations on previous stored states. For example, given below for the state
+`number`, we increment it by 1 on the click of a button:
+
+```jsx
+function Component() {
+  return (
+    <button
+      onClick={() => {
+        setNumber(number + 1);
+      }}
+    >
+      Click Me!
+    </button>
+  );
+}
+```
+
+## 2. useEffect()
+
+`useEffect()`, one of the most useful hooks in React. React works on the concept
+of re-rendering a page when there is an update to a state. It can be used to
+track when these states are changed and execute a function each time.
+`useEffect()` is useful because it allows you to track the side effects of any
+component and is particularly useful for fetching data, updating the DOM for a
+specific condition or tracking a state to check if it has satisfied a certain
+check.
+
+`useEffect()` takes in two props: a setup function, which runs after a render is
+executed and an optional dependency prop which can track a certain state or run
+on the initial render of the application. The setup function can also have an
+optional cleanup function after it, which executes before the component is
+unmounted.
+
+```jsx
+import { useEffect, useState } from "react";
+
+function Component() {
+  const [counter, setCounter] = useState < number > 0;
+  useEffect(() => {
+    const counter = setInterval(() => {
+      setCounter(num + 1);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [num]);
+}
+```
+
+In the above example, we have created a state, `counter`, which will keep track
+of a number. We have a seperate variable defined somewhere else in our file
+called `num`. When `num` is changed, the useEffect function will run the
+setInterval function, which will increment the `counter` state every 3000
+milliseconds. The cleanup function runs before unmounting.
+
+We can also set the `useEffect()` hook to only run on the initial render of the
+web application. We can do this by setting the optional dependency as `[]`. In
+the example below, we send a fetch request to our test server and then log the
+data to the console. The initial render is executed twice because React mounts
+the component, unmounts it and then remounts it.
+
+Keep in mind, you should never update a state inside a `useEffect()` which is
+being tracked, as this can cause an infinite loop of re-rendering.
+
+```jsx
+import { useEffect } from "react";
+
+function Component() {
+  useEffect(() => {
+    fetch("https://servertest.com")
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+}
+```
+
+## 3. useRef()
+
+`useRef()` is a React hook mainly used to locate and reference a value locally
+in a component. When a re-render is executed, the value stored inside a
+`useRef()` is not affected, whereas a normal variable's value is reset. It also
+does not cause a re-render when the value is changed, unlike a state. Its value
+cannot be shared outside its component unlike variables. Some important things
+to keep in mind about `useRef()` is that it's value should not be changed or
+read during the rendering of your web application. It value should be
+changed/read as a side effect to another event, such as clicking a button or on
+a response from a promise.
+
+In order to use `useRef()`, we'll first import it from "react" and create a ref
+object called `counterRef`, as shown below. We'll give it an initial value of 0.
+On clicking the button, it'll increment the ref's value by 1 and log it to the
+console.
+
+```jsx
+import { useRef } from "react";
+
+function Component() {
+  const counterRef = useRef < number > 0;
+  function IncrementRef() {
+    counterRef.current = counterRef.current + 1;
+    console.log("The current value of counterRef is " + counterRef);
+  }
+  return (
+    <div>
+      <button onClick={IncrementRef}>Click me to increment the ref!</button>
+    </div>
+  );
+}
+```
+
+### DOM Manipulation with useRef()
+
+This is mostly what `useRef()` is used for in React projects: manipulating the
+DOM by giving a ref to a JSX/TSX component and executing a function as a side
+effect. Given below is an example of a button component shifting the client's
+focus to an input box using `useRef()`
+
+```jsx
+import { useRef } from "react";
+
+function Component() {
+  const ref = useRef(null);
+  function FocusOnInput() {
+    ref.current.focus();
+  }
+  return (
+    <div>
+      <input ref={ref} placeholder="Input Box" type="text" />
+      <button onClick={FocusOnInput}>Click Me!</button>
+    </div>
+  );
+}
+```
+
+## 4. useMemo()
+
+`useMemo()` is a React hook used to cache the result of a calculation function
+in between re-renders. It is very optimized as it compares the current value and
+previous value of the arguments for any updates. If there is no change, it
+returns the previous result.
+
+Given below is an example of `useMemo()` in action. It takes in two arguments, a
+calculateValue function and dependecies. The dependencies contain the variables
+whose values will be tracked for any updates. The calculateValue function will
+run everytime there is a change in the dependecies and on the initial render.
+This function should be pure (the result depends on the arguments) and take no
+arguments.
+
+```jsx
+import { useMemo } from "react";
+
+function Component() {
+  const testMemo = useMemo(
+    () => calculateValuesFunction(testVariable, testVariable2),
+    [testVariable, testVariable2]
+  );
+}
+```
+
+## 5. useId()
+
+`useId()` is a React hook which is used to return a uniquely generated ID to be
+passed in accessibility attributes and finds use especially for forms. It
+shouldn't be used to generate unique ID keys for user data, but only for
+uniquely identifying certain attributes. `useId()` takes in no parameters.
+
+In the example below, we first import `useId()` from "react". We then create a
+unique ID in a variable `passwordID`, which will be used to identify unique
+accessibility attributes. What is an accessibility attribute? It's a way of
+connecting two HTML elements through the use of `area-describeby` and `id`. When
+we use multiple instances of the same component in a parent component, without
+`useId()`, the attributes end up being the same for all the instances. This
+leads to accessibility issues. `useId()` solves this problem by generating a
+unique ID for each instance of the component.
+
+```jsx
+import { useId } from "react";
+
+function Component() {
+  const passwordID = useId();
+  return (
+    <div>
+      <label aria-describedby={passwordID}>Enter Password</label>
+      <input id={passwordID} placeholder="Password" type="text" />
+    </div>
+  );
+}
+```
