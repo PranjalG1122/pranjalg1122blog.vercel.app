@@ -8,48 +8,34 @@ const posts = await Astro.glob("../pages/blogs/*.mdx");
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/Blog512x512.png" />
+    <link rel="icon" type="image/svg+xml" href="/blogLogo.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Pranjal's blog</title>
   </head>
   <body
-    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-slate-950"
+    class="flex flex-col w-full justify-start h-full min-h-screen font-sans text-white bg-neutral-900"
   >
     <Navbar />
     <main
-      class="flex flex-col mx-auto h-full desktop:max-w-3xl gap-8 py-8 desktop:px-0 px-4"
+      class="flex flex-col mx-auto h-full md:max-w-3xl gap-8 md:px-2 px-4 py-8"
     >
-      <div
-        class="flex desktop:flex-row flex-col desktop:items-center items-start gap-4"
-      >
-        <img
-          src="https://avatars.githubusercontent.com/u/95481637?v=4"
-          alt="img_not_found"
-          class="desktop:h-40 h-20 aspect-square rounded-full"
-        />
-        <div class="flex flex-col gap-2">
-          <p class="desktop:text-4xl text-2xl font-semibold">Pranjal Gupta</p>
-          <p class="desktop:text-lg text-base">
-            Hey, welcome to my blog! I'm a web developer who loves to write
-            about programming and tech. Join me on my journey to learn more
-            about web development and programming, as I document my experiences,
-            projects, and learnings. Check out my portfolio site <span
-              ><a
-                href="https://pranjalg420.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-blue-400 hover:underline underline-offset-2 transition-all"
-                >here</a
-              ></span
-            >.
-          </p>
-        </div>
-      </div>
-      <IndexBlogPosts
-        posts={posts}
-        client:only={"svelte"}
-      />
+      <p class="md:text-lg text-base">
+        Welcome to my blog, where I'll be sharing my experiences as a software
+        developer delving into the world of machine learning. Join me on this
+        journey of learning, challenges, and discoveries as I explore the
+        exciting realm of AI and its applications. Let's learn and grow
+        together! Check out my portoflio site <span
+          ><a
+            href="https://pranjalg420.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-500 hover:underline underline-offset-2 transition-all"
+            >here</a
+          ></span
+        >.
+      </p>
+      <IndexBlogPosts posts={posts} client:only={"svelte"} />
     </main>
   </body>
 </html>
