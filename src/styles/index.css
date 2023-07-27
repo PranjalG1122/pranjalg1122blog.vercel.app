@@ -18,34 +18,83 @@
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply text-white md:text-2xl text-xl font-medium;
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 500;
 }
 
 .prose p,
 .prose strong,
 .prose li {
-  @apply text-white md:text-lg text-base;
+  color: #fff;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .prose pre {
-  @apply text-white md:text-base text-sm p-4 font-normal bg-neutral-800 overflow-auto;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 1rem;
+  font-weight: 400;
+  background-color: #262626;
+  overflow: auto;
 }
 
 .prose pre > code {
-  @apply px-0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .prose code {
-  @apply text-white md:text-sm text-xs px-1 py-0.5 font-normal bg-neutral-800 overflow-auto;
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.25rem 0.125rem;
+  font-weight: 400;
+  background-color: #262626;
+  overflow: auto;
 }
 
 code::after,
 code::before {
-  @apply hidden;
+  display: none;
 }
 
 .prose ul {
-  @apply list-disc list-inside text-white;
+  color: #fff;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+@media (max-width: 768px) {
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .prose p,
+  .prose strong,
+  .prose li {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .prose pre {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .prose code {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
 }
 
 ::-webkit-search-cancel-button {
