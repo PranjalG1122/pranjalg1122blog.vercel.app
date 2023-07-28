@@ -103,6 +103,7 @@ code::before {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height:4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -110,10 +111,10 @@ code::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #262626;
+  background-color: #404040;
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #404040;
+  background-color: #525252;
 }
