@@ -1,0 +1,229 @@
+---
+title: "Data Encoding for Machine Learning"
+pubDate: "2023-07-28"
+layout: "../../layouts/blogLayout.astro"
+description:
+  "This blog is about the encoding data to train machine learning algorithms and
+  models. It will cover the different types of variables in datasets and
+  different methods of encoding that data."
+tags: ["ML", "Python"]
+---
+
+## Introduction
+
+Machine learning is a vast and diverse field of complex mathematical statistics,
+and it is not easy to understand all the concepts at once. In this blog, I will
+try to explain some of the essential concepts of machine learning in a simple
+and easy-to-understand way. Lets start off with the types of data we can expect
+from a given dataset:
+
+- Categorical Variables (Ordinal, Nominal, Ratio, Interval)
+- Numerical Variables
+
+Categorical variables are variables which are usually of type string. They are
+used to describe and group together similar types of data together. There are
+two types: Ordinal and Nominal. Nominal data can be defined as mutually
+exclusive categories that do not depend on a particular order. They are
+essentially labels to describe some data, as given in the example below. Ordinal
+data is data with an inherent or implied order. In the example given below,
+there is an inherent or implied order for which type of a school a student goes
+to, but the difference of years in between schools is not important. Interval
+data is much more dependent on the particular order between labels. It can be
+compared to a numerical scale, where there is a constant difference between each
+point on the scale and it always appears as numerical data. An example of this
+is a range of scores for the SAT exam (1600-1800). Lastly, there is ratio data,
+which is just like interval data but contains a definite 0 point on the scale,
+such as a temperature scale, or an analog weighing machine
+
+```python
+# Examples of ordinal and nominal data
+
+ordinal_data = [
+  "Elementary School",
+  "Middle School",
+  "High School",
+  "College"
+]
+
+nominal_data = [
+  "Red hair",
+  "Blue hair",
+  "Green hair"
+]
+```
+
+Numerical variables, as the name suggests, stores numerical values used to
+represent some data. There are two types: Continous and Discrete variables.
+Continous variables contain floating data types, examples such as $125.67 or 5.8
+meters. Discrete variables are only integers and whole numbers, such as 10
+apples or 15 bananas.
+
+## Encoding Data
+
+What exactly is data encoding? It means to convert some data of a particular
+form into another form, which is more useful for a use case scenario. The best
+example is encoding data for machine learning. Having labels or string
+categories is not useful to our model, so we convert them into numerical values.
+That way, the model can be easily trained
+
+### Ordinal Encoding
+
+In the example below, we have a dataframe given with three different types of
+schools. We then use the OrdinalEncoder from `category_encoders` to assign a
+numerical value to each school. While this does mean we can easily input the
+data into models such as neural networks, the numbers assigned are arbitrary in
+nature and might confuse models such as decisions trees. In the example below,
+we had a dataset with categories "Elementary School", "Middle School" and "High
+School". We assigned each of them a value, 1, 2 and 3 respectively, with 0
+reserved for no value.
+
+| Schools           | encoded |
+| ----------------- | ------- |
+| Middle School     | 2       |
+| High School       | 3       |
+| High School       | 3       |
+| Middle School     | 2       |
+| High School       | 3       |
+| Elementary School | 1       |
+| Middle School     | 2       |
+| Elementary School | 1       |
+
+### One-hot Encoding
+
+The One-hot encoder returns a dataframe with each new column representing a
+feature, and each row corresponding to a value between 0 and 1 which represents
+it prescence. In the example below, we create a column for each unique category
+and for each row, assign a 0 or 1 if it satisfies that category.
+
+| Schools           | schools_elementary | schools_middle | schools_high |
+| ----------------- | ------------------ | -------------- | ------------ |
+| Middle School     | 0                  | 1              | 0            |
+| High School       | 0                  | 0              | 1            |
+| High School       | 0                  | 0              | 1            |
+| Middle School     | 0                  | 1              | 0            |
+| High School       | 0                  | 0              | 1            |
+| Elementary School | 1                  | 0              | 0            |
+| Middle School     | 0                  | 1              | 0            |
+| Elementary School | 1                  | 0              | 0            |
+
+### Binary Encoding
+
+Binary encoding is a combination of ordinal and one-hot encoding, but a step
+further. Suppose there are 32 categories, then one-hot encoding will return 32
+columns. Binary encoding converts the 32 into binary, so in the end, there will
+only be 5 columns. In the example below, for the first letter `a`, it is given a
+value 1 and be represented in the table as columns "0 0 0 1".
+
+| Letters | letters_0 | letters_1 | letters_2 | letters_3 |
+| ------- | --------- | --------- | --------- | --------- |
+| a       | 0         | 0         | 0         | 1         |
+| b       | 0         | 0         | 1         | 0         |
+| c       | 0         | 0         | 1         | 1         |
+| a       | 0         | 0         | 0         | 1         |
+| e       | 0         | 1         | 0         | 0         |
+| o       | 0         | 1         | 0         | 1         |
+| k       | 0         | 1         | 1         | 0         |
+| h       | 0         | 1         | 1         | 1         |
+| j       | 1         | 0         | 0         | 0         |
+| j       | 1         | 0         | 0         | 0         |
+| h       | 0         | 1         | 1         | 1         |
+| l       | 1         | 0         | 0         | 1         |
+| l       | 1         | 0         | 0         | 1         |
+| b       | 0         | 0         | 1         | 0         |
+
+### Frequency or Count Encoding
+
+Frequency/Count encoding is very easy to understand, as it simply replaces the
+category with the frequency of the mentioned category in the dataset. As given
+below, the automobile manufacturer Toyota appears 4 times, and as such is
+represented by 4.
+
+| Automobile Manufacturer | count |
+| ----------------------- | ----- |
+| Toyota                  | 4     |
+| Honda                   | 3     |
+| Ford                    | 2     |
+| Honda                   | 3     |
+| Ford                    | 2     |
+| Toyota                  | 4     |
+| Toyota                  | 4     |
+| Honda                   | 3     |
+| Toyota                  | 4     |
+
+### Feature Hashing
+
+Up till now, we've seen some simple ways to encode data. However, the encoded
+data has always returned a large number of columns, which can be diffcult for a
+machine learning model to train and validate on. For example, if we take the
+common machine learning problem of detecting spam email, we need to look at each
+word used in the email. Each unique word would count as a feature and this can
+be confusing for both the developer and model.
+
+In feature hashing, we take the 32 bit decimal hash of each word and take the
+modulus of it using an integer, usually 8. This means we can seperate all the
+unique features into 8 categories. What's interesting is that feature hashing
+combines the indices of arrays and the scalability of linked lists to store the
+data. If we hash a sentence and two or more hashes have the same remaineder
+about the modulus function, it simply becomes connected after the first one in a
+linked list.
+
+| index | Features  | Data                    |
+| ----- | --------- | ----------------------- |
+| 0     | Feature_0 | 0                       |
+| 1     | Feature_1 | 0                       |
+| 2     | Feature_2 | 0                       |
+| 3     | Feature_3 | 0                       |
+| 4     | Feature_4 | ["likes"] -> ["movies"] |
+| 5     | Feature_5 | 0                       |
+| 6     | Feature_6 | ["josh"]                |
+| 7     | Feature_7 | 0                       |
+
+### Target Encoding
+
+There are a couple different types of target encoding which can be used on data.
+The first type is simple target encoding, where the mean of each unique category
+based on their respective target values is calculated and assigned to the
+category. In the example below, the mean of `Blue` is calculated to be 0.5 by
+averaging all the values of the `Target` column, and as such, all `Blue` values
+are replaced with 0.5.
+
+| Categories | Target | Target Encoding |
+| ---------- | ------ | --------------- |
+| Blue       | 1      | 0.5             |
+| Red        | 0      | 0.0             |
+| Blue       | 1      | 0.5             |
+| Green      | 1      | 1               |
+| Red        | 0      | 0.0             |
+| Blue       | 0      | 0.5             |
+| Green      | 1      | 1               |
+| Red        | 0      | 0.0             |
+| Blue       | 0      | 0.5             |
+
+The second type is smoothing target encoding, in which we take the weighted
+mean, or we consider the number of occurences of each category. This is done so
+that any categories with a small number of occurences are not overfitting the
+model. We can use the formula given below to find the weighted average, where n
+represents the number of occurences of the category, m represents the smoothing
+parameter, and the overall mean is the mean of the target column:
+
+$$
+\text{Weighted mean} = \frac{n*\text{Option Mean} + m*\text{Overall mean}}{n+m}
+$$
+
+| Categories | Target | Target Encoding |
+| ---------- | ------ | --------------- |
+| Blue       | 1      | 0.5             |
+| Red        | 0      | 0.0             |
+| Blue       | 1      | 0.5             |
+| Green      | 1      | 1               |
+| Red        | 0      | 0.0             |
+| Blue       | 0      | 0.5             |
+| Green      | 1      | 1               |
+| Red        | 0      | 0.0             |
+| Blue       | 0      | 0.5             |
+
+Lastly, there is K-fold target encoding, where K represents the number of folds
+in the dataset. In this type of encoding, the dataset is split into K folds, and
+the mean of each fold is calculated. Then, the mean of each fold is used to
+encode the data in the other folds. This is done to prevent overfitting, as the
+mean of each fold is calculated using the other folds.
