@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <button
   on:click={() => {
     navigator.clipboard.writeText(window.location.href);
@@ -9,7 +6,7 @@
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="h-8 w-8 aspect-square rounded-full p-1 bg-neutral-700 "
+    class="h-8 w-8 aspect-square rounded-full p-1 bg-neutral-700"
     width="24"
     height="24"
     viewBox="0 0 24 24"

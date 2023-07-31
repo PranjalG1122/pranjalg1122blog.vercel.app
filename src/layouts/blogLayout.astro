@@ -52,6 +52,10 @@ const icons = [
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+    />
   </head>
 
   <body
@@ -59,7 +63,7 @@ const icons = [
   >
     <Navbar />
     <main
-      class="flex flex-col mx-auto h-full flex-1 md:max-w-3xl w-full gap-10 md:py-8 py-4 md:px-2 px-4"
+      class="flex flex-col mx-auto h-full flex-1 md:max-w-3xl w-full md:py-8 py-4 md:px-2 px-4"
     >
       <div class="flex flex-col gap-4 leading-none">
         <h1 class="md:text-4xl text-2xl font-medium">{title}</h1>
@@ -87,7 +91,12 @@ const icons = [
           <CopyToClipboard client:load />
         </div>
       </div>
-      <div class="prose md:max-w-full max-w-full">
+      <div
+        class={"prose dark:prose-invert prose-code:before:hidden prose-code:after:hidden " +
+          "md:prose-ol:text-lg prose-ol:text-base prose-p:text-white " +
+          "prose-a:no-underline prose-ul:text-white md:max-w-full max-w-full " +
+          "prose-code:bg-neutral-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm"}
+      >
         <slot />
       </div>
     </main>

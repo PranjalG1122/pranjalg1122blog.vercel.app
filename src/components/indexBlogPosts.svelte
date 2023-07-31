@@ -1,9 +1,8 @@
 <script lang="ts">
   export let posts: {
     frontmatter: {
-      index: number;
       title: string;
-      date: string;
+      pubDate: string;
       tags: string[];
       description: string;
     };
@@ -38,8 +37,10 @@
       );
     })
     .sort((a, b) => {
-      return a.frontmatter.index - b.frontmatter.index;
-    }).reverse();
+      return (
+        Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate)
+      );
+    });
 </script>
 
 <div class="flex flex-col gap-4">
@@ -74,7 +75,7 @@
           {post.frontmatter.title}
         </h1>
         <span class="text-neutral-500 text-base">
-          {post.frontmatter.date}
+          {post.frontmatter.pubDate}
         </span>
         <div class="flex flex-row gap-2 flex-wrap">
           {#each post.frontmatter.tags as tag}
