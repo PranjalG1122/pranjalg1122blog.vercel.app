@@ -12,7 +12,7 @@ import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://localhost:3000",
+  site: "https://pranjalg420blog.vercel.app/",
   integrations: [svelte(), tailwind(), mdx()],
   markdown: {
     shikiConfig: {
