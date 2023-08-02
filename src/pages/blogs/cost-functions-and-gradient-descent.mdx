@@ -1,0 +1,113 @@
+---
+title: "Cost Functions and Gradient Descent"
+pubDate: "2023-08-01"
+layout: "../../layouts/blogLayout.astro"
+description:
+  "I'll be talking about cost functions and gradient descent. These terms are
+  used in almost every machine learning model and are essential to understanding
+  how they work and in improving their accuracy."
+tags: ["ML", "Python"]
+---
+
+## Introduction
+
+Machine learning consists of a large number of models, but each of them use some
+common terms. In this post, I'll be talking about some of these terms, such as
+cost functions, gradient descent, overfitting, underfitting and training,
+validation and test data.
+
+## Cost Functions
+
+We can define cost as a parameter which helps us to test the accuracy of a
+machine learning model. It's a function used to quantify the difference between
+the predicted output of a model and the expected output. Some people may use
+loss and cost interchangeably, but they differ in the fact that the loss
+function is the calculated error over a single observation while the cost
+function covers the entire dataset. The cost function is essential in training a
+model because it helps us to see how inaccurate our model is as well as gives an
+indication of whether it's improving or not.
+
+There are a couple of types of cost functions and each have their own advantages
+and limitations.
+
+1. ### Mean Square Error
+   Also known as L2 loss, it removes the problem of zero mean error by simply
+   squaring both points, so negative values do not affect the final calculation.
+   While effective, it introduces a new problem: outliers are now also squared
+   and contribute more to the error in prediction. This cost function is mainly
+   used in regression models (models which output a continous value).
+   $$
+   \text{Mean Square Error} = \frac{1}{n} \sum^n_{i=0}(y-y')^2
+   $$
+2. ### Mean Absolute Error
+
+   Instead of squaring both points, it simple takes the modulus of the
+   difference of the points. This means it can avoid the zero mean error and not
+   be as affected by outliers. Also referred to as L1 loss, it finds
+   applications mainly in regression models.
+
+   $$
+   \text{Mean Absolute Error} = \frac{1}{n} \sum^n_{i=0}|y-y'|
+   $$
+
+3. ### Cross Entropy
+
+   This function is efffective when dealing with finding the loss in order to
+   execute backpropagation. It finds applications in mainly classifier models.
+   Lets take an example of a classifier model which wishes to return a
+   prediction of whether an image is an apple, banana or orange. After running
+   it through a classifer model, we get the following vector output of
+   predictions and we have our expected vector output.
+
+   $$
+    \text{Predicted} = \begin{pmatrix} 0.775 \\ 0.105 \\ 0.120 \end{pmatrix}
+    \text{Expected} =  \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+   $$
+
+   We can use the following formula to find cross entropy for each observation.
+   `n` is the number of classifications possible, $$t_i$$ is the ground truth
+   label (usually 0 or 1) and $$p_i$$ is the predicted value from the activation
+   function.
+
+   $$
+    L_{Cross Entropy} = -\sum^n_{i=0}t_i log(p_i)
+   $$
+
+   We can then use cross entropy to plot a negative log function against loss.
+   As the plot approaches 0, the value of loss jumps up. This is especially
+   useful for backpropagation as the slope is large and can more easily tell us
+   which direction to go in to minimize loss.
+
+4. ### Hinge Loss
+
+   Hinge loss cost functions mainly find use in binary classification models and
+   support vector machines (SVM). It is a convex function (a function where the
+   line segment between any two points on the graph lies above the graph itself)
+   which usually returns values between -1 and 1. As shown in the formula below,
+   if $$y*h(y) < 1$$, then the loss function increases.
+
+   $$
+   \text{Hinge Loss} = max(0,1 - y*h(y))
+   $$
+
+## Gradient Descent
+
+Gradient descent is a mathematical iterative optimization operation used to find
+the local minima of a certain function. It particularly finds use in machine
+learning for decreasing the cost function in order to improve accuracy. Suppose
+we have a two input variable and differentiable function, which takes inputs x
+and y. Our goal with gradient descent is to find the minima of the function,
+which can be done by differenting at a random point and moving in the direction
+opposite to a positive slope.
+
+Learning rate is defined as how much we move after differentiation. High
+learning rates can lead to a lot of skipping and might not give us the best
+value of minima. Slow learning rates are more accurate, but can be very slow
+when training a model. Furthermore, there are two types of minima: Local minima
+and global minima. Local minima is the minimum point of a gradient for a certain
+region. For example, in the function $$y=x^4+x^3-2x^2$$, the local minima for
+$$x=0$$ to $$x=2$$ is at $$x=0.693$$, but the global minima or minima of the
+entire function, is at $$x=-1.443$$. We can apply this same technique to find
+the minima and thus least cost function of the following graph.
+
+![alt](/cost_functions_and_gradient_descent/gradient.png)

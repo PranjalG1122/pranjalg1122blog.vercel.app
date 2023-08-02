@@ -12,6 +12,10 @@
   --astro-code-token-link: #eeeeee;
 }
 
+.math-display {
+  overflow-x: scroll;
+}
+
 .prose pre > code {
   padding: 0;
 }

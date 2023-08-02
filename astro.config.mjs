@@ -10,7 +10,6 @@ import remarkMath from "remark-math";
 
 import vercel from "@astrojs/vercel/serverless";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://pranjalg420blog.vercel.app/",
   integrations: [svelte(), tailwind(), mdx()],
