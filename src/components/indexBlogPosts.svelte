@@ -95,7 +95,7 @@
         </a>
       </a>
     {/each}{:else}
-    <div class="text-neutral-500 w-full text-center">
+    <div class="text-neutral-500 w-full text-center py-8">
       No posts found ¯\_(ツ)_/¯
     </div>
   {/if}
