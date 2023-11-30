@@ -11,7 +11,7 @@ import remarkMath from "remark-math";
 import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
-  site: "https://pranjalg420blog.vercel.app/",
+  site: "https://pranjalg1122blog.vercel.app/",
   integrations: [svelte(), tailwind(), mdx()],
   markdown: {
     shikiConfig: {
